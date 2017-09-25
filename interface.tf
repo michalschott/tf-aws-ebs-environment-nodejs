@@ -137,13 +137,18 @@ variable "node_version" {
 }
 
 variable "node_command" {
-  default = ""
+  default     = ""
   description = "Command used to starte the Node.js application."
 }
 
 variable "node_env" {
-  default = ""
+  default     = ""
   description = "NODE_ENV environment variable."
+}
+
+variable "db_uri" {
+  default     = ""
+  description = "DB_URI environment variable."
 }
 
 output "role-name" {

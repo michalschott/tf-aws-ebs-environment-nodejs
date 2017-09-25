@@ -211,6 +211,12 @@ resource "aws_elastic_beanstalk_environment" "app" {
     value     = "${var.node_env}"
   }
 
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "DB_URI"
+    value     = "${var.db_uri}"
+  }
+
   tags {
     "Terraform"   = "true"
     "Customer"    = "${length(var.customer) > 0 ? var.customer : "N/A"}"
