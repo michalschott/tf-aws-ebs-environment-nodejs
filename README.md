@@ -16,6 +16,7 @@ This simple module is designed to:
 | asg_max_size | Maximum size of ASG group. | string | `1` | no |
 | asg_min_size | Minimum size of ASG group. | string | `1` | no |
 | customer | Customer name. | string | `` | no |
+| db_uri | DB_URI environment variable. | string | `` | no |
 | ebs_app | EBS App name. | string | - | yes |
 | ec2_instance_type | EC2 instance type. | string | - | yes |
 | ec2_key_name | SSH Key Name to insert. | string | `` | no |
@@ -39,8 +40,7 @@ This simple module is designed to:
 | ssh_source_restriction | CIDR SSH access whitelist. | string | `0.0.0.0/0` | no |
 | vpc_ec2_subnets | Subnets for autoscaling group. | list | - | yes |
 | vpc_elb_scheme | internal or external. | string | `` | no |
-| vpc_elb_subnets | Subnets for loadbalancer. | list | - | yes |
-| vpc_id | VPC id. | string | - | yes |
+| vpc_elb_subnets | Subnets for loadbalancer. | list | - |
 
 ## Outputs
 
