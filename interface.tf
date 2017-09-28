@@ -83,6 +83,10 @@ variable "elb_connection_draining_timeout" {
   description = "Connection draining timeout in seconds."
 }
 
+variable "elb_ssl_cert" {
+  description = "ARN of ceriticate."
+}
+
 variable "ec2_key_name" {
   default     = ""
   description = "SSH Key Name to insert."

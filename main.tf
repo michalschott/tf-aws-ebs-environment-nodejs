@@ -116,6 +116,18 @@ resource "aws_elastic_beanstalk_environment" "app" {
   }
 
   setting {
+    namespace = "aws:elb:loadbalancer"
+    name      = "LoadBalancerHTTPSPort"
+    value     = "443"
+  }
+
+  setting {
+    namespace = "aws:elb:loadbalancer"
+    name      = "SSLCertificateId"
+    value     = "${var.elb_ssl_cert}"
+  }
+
+  setting {
     namespace = "aws:elb:policies"
     name      = "ConnectionDrainingEnabled"
     value     = "${var.elb_connection_draining_enabled}"

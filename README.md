@@ -60,6 +60,7 @@ Including an example of how to use this module:
       app_solution_stack = "64bit Amazon Linux 2017.03 v2.7.4 running Multi-container Docker 17.03.1-ce (Generic)"
       ebs_app            = "ElasticBeanstalkAppName"
       ec2_instance_type  = "t2.micro"
+      elb_ssl_cert       = "arn::...."
       environment        = "MyEnvironmentName"
       vpc_ec2_subnets    = ["private-sub-az1", "private-sub-az2"]
       vpc_elb_subnets    = ["public-sub-az1", "public-sub-az2"]
