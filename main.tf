@@ -164,6 +164,18 @@ resource "aws_elastic_beanstalk_environment" "app" {
   }
 
   setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "LowerThreshold"
+    value     = "${var.asg_trigger_lower_threshold}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "UpperThreshold"
+    value     = "${var.asg_trigger_upper_threshold}"
+  }
+
+  setting {
     namespace = "aws:elasticbeanstalk:application"
     name      = "Application Healthcheck URL"
     value     = "${var.healthcheck_url}"

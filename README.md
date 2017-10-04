@@ -15,6 +15,8 @@ This simple module is designed to:
 | app_tier | Webserver or Worker. | string | `WebServer` | no |
 | asg_max_size | Maximum size of ASG group. | string | `1` | no |
 | asg_min_size | Minimum size of ASG group. | string | `1` | no |
+| asg_trigger_lower_threshold | If the measurement falls below this number for the breach duration, a trigger is fired. | string | `2000000` | no |
+| asg_trigger_upper_threshold | If the measurement is higher than this number for the breach duration, a trigger is fired. | string | `6000000` | no |
 | customer | Customer name. | string | `` | no |
 | db_uri | DB_URI environment variable. | string | `` | no |
 | ebs_app | EBS App name. | string | - | yes |
@@ -40,7 +42,8 @@ This simple module is designed to:
 | ssh_source_restriction | CIDR SSH access whitelist. | string | `0.0.0.0/0` | no |
 | vpc_ec2_subnets | Subnets for autoscaling group. | list | - | yes |
 | vpc_elb_scheme | internal or external. | string | `` | no |
-| vpc_elb_subnets | Subnets for loadbalancer. | list | - |
+| vpc_elb_subnets | Subnets for loadbalancer. | list | - | yes |
+| vpc_id | VPC id. | string | - | yes |
 
 ## Outputs
 
