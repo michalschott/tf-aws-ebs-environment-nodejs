@@ -155,6 +155,16 @@ variable "db_uri" {
   description = "DB_URI environment variable."
 }
 
+variable "asg_trigger_lower_threshold" {
+  default     = "2000000"
+  description = "If the measurement falls below this number for the breach duration, a trigger is fired."
+}
+
+variable "asg_trigger_upper_threshold" {
+  default     = "6000000"
+  description = "If the measurement is higher than this number for the breach duration, a trigger is fired."
+}
+
 output "role-name" {
   description = "IAM role name."
   value       = "${aws_iam_role.app.name}"
