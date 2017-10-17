@@ -15,7 +15,14 @@ This simple module is designed to:
 | app_tier | Webserver or Worker. | string | `WebServer` | no |
 | asg_max_size | Maximum size of ASG group. | string | `1` | no |
 | asg_min_size | Minimum size of ASG group. | string | `1` | no |
+| asg_trigger_breach_duration | Amount of time, in minutes, a metric can be beyond its defined limit before the trigger fires. | string | `5` | no |
+| asg_trigger_lower_breach_scale_increment | How many Amazon EC2 instances to remove when performing a scaling activity. | string | `-1` | no |
 | asg_trigger_lower_threshold | If the measurement falls below this number for the breach duration, a trigger is fired. | string | `2000000` | no |
+| asg_trigger_measure_name | Metric used for your Auto Scaling trigger. | string | `NetworkOut` | no |
+| asg_trigger_period | Specifies how frequently Amazon CloudWatch measures the metrics for your trigger. | string | `5` | no |
+| asg_trigger_statistic | Statistic the trigger should use, such as Average. | string | `Average` | no |
+| asg_trigger_unit | Unit for the trigger measurement, such as Bytes. | string | `Bytes` | no |
+| asg_trigger_upper_breach_scale_increment | How many Amazon EC2 instances to add when performing a scaling activity. | string | `1` | no |
 | asg_trigger_upper_threshold | If the measurement is higher than this number for the breach duration, a trigger is fired. | string | `6000000` | no |
 | customer | Customer name. | string | `` | no |
 | db_uri | DB_URI environment variable. | string | `` | no |
