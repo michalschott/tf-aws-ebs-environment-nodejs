@@ -165,8 +165,50 @@ resource "aws_elastic_beanstalk_environment" "app" {
 
   setting {
     namespace = "aws:autoscaling:trigger"
+    name      = "BreachDuration"
+    value     = "${var.asg_trigger_breach_duration}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "LowerBreachScaleIncrement"
+    value     = "${var.asg_trigger_lower_breach_scale_increment}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
     name      = "LowerThreshold"
     value     = "${var.asg_trigger_lower_threshold}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "MeasureName"
+    value     = "${var.asg_trigger_measure_name}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "Period"
+    value     = "${var.asg_trigger_period}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "Statistic"
+    value     = "${var.asg_trigger_statistic}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "Unit"
+    value     = "${var.asg_trigger_unit}"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:trigger"
+    name      = "UpperBreachScaleIncrement"
+    value     = "${var.asg_trigger_upper_breach_scale_increment}"
   }
 
   setting {

@@ -151,9 +151,44 @@ variable "db_uri" {
   description = "DB_URI environment variable."
 }
 
+variable "asg_trigger_breach_duration" {
+  description = "Amount of time, in minutes, a metric can be beyond its defined limit before the trigger fires."
+  default     = 5
+}
+
+variable "asg_trigger_lower_breach_scale_increment" {
+  description = "How many Amazon EC2 instances to remove when performing a scaling activity."
+  default     = -1
+}
+
 variable "asg_trigger_lower_threshold" {
   default     = "2000000"
   description = "If the measurement falls below this number for the breach duration, a trigger is fired."
+}
+
+variable "asg_trigger_measure_name" {
+  default     = "NetworkOut"
+  description = "Metric used for your Auto Scaling trigger."
+}
+
+variable "asg_trigger_period" {
+  default     = 5
+  description = "Specifies how frequently Amazon CloudWatch measures the metrics for your trigger."
+}
+
+variable "asg_trigger_statistic" {
+  default     = "Average"
+  description = "Statistic the trigger should use, such as Average."
+}
+
+variable "asg_trigger_unit" {
+  default     = "Bytes"
+  description = "Unit for the trigger measurement, such as Bytes."
+}
+
+variable "asg_trigger_upper_breach_scale_increment" {
+  description = "How many Amazon EC2 instances to add when performing a scaling activity."
+  default     = 1
 }
 
 variable "asg_trigger_upper_threshold" {
