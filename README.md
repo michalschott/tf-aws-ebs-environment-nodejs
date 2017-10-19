@@ -1,10 +1,9 @@
 tf-aws-ebs-environment
 ----------------
 
-This simple module is designed to:
-* create Elastic Beanstalk environment inside provided application (inside VPC)
+This module is designed to create Elastic Beanstalk environment inside provided application (inside VPC).
 
-**This module is designed to work with Elastic Beanstalk Docker platforms.**
+Originally I'm using it with Nodejs solution stack.
 
 ## Inputs
 
@@ -24,6 +23,8 @@ This simple module is designed to:
 | asg_trigger_unit | Unit for the trigger measurement, such as Bytes. | string | `Bytes` | no |
 | asg_trigger_upper_breach_scale_increment | How many Amazon EC2 instances to add when performing a scaling activity. | string | `1` | no |
 | asg_trigger_upper_threshold | If the measurement is higher than this number for the breach duration, a trigger is fired. | string | `6000000` | no |
+| batch_size | Percentage or fixed number of Amazon EC2 instances in the Auto Scaling group on which to simultaneously perform deployments. | string | `100` | no |
+| batch_size_type | The type of number that is specified in BatchSize. | string | `Percentage` | no |
 | customer | Customer name. | string | `` | no |
 | db_uri | DB_URI environment variable. | string | `` | no |
 | ebs_app | EBS App name. | string | - | yes |
@@ -31,10 +32,15 @@ This simple module is designed to:
 | ec2_key_name | SSH Key Name to insert. | string | `` | no |
 | elb_connection_draining_enabled | Should connection draining be enabled. | string | `true` | no |
 | elb_connection_draining_timeout | Connection draining timeout in seconds. | string | `180` | no |
+| elb_ssl_cert | ARN of certificate to use. | string | `` | no |
+| env_default_key |  | string | `DEFAULT_ENV_%d` | no |
+| env_default_value |  | string | `UNSET` | no |
+| env_vars |  | map | `<map>` | no |
 | environment | Environment name. | string | - | yes |
 | healthcheck_url | Application healthcheck URL. | string | `TCP:80` | no |
 | http_cidr_egress | CIDR whitelist outbound ELB connectivity. | string | `<list>` | no |
 | http_cidr_ingress | CIDR whitelist for 80 port. | string | `<list>` | no |
+| loadbalancer_type | Loadbalancer type. | string | `classic` | no |
 | logs_delete_on_terminate | Should logs be removed from CloudWatch when environment is terminated. | string | `false` | no |
 | logs_retention | CloudWatch logs retention in days. | string | `7` | no |
 | logs_stream | Should logs be published in CloudWatch. | string | `false` | no |
@@ -44,7 +50,7 @@ This simple module is designed to:
 | notification_endpoint | Notification endpoint. | string | `` | no |
 | project | Project name. | string | `` | no |
 | rolling_update_enabled | Should we update in rolling manner. | string | `true` | no |
-| rolling_update_type | Rolling update type. | string | `Time` | no |
+| rolling_update_type | Rolling update type. | string | `Health` | no |
 | separator | Separator to be used in naming. | string | `-` | no |
 | ssh_source_restriction | CIDR SSH access whitelist. | string | `0.0.0.0/0` | no |
 | vpc_ec2_subnets | Subnets for autoscaling group. | list | - | yes |
@@ -57,6 +63,7 @@ This simple module is designed to:
 | Name | Description |
 |------|-------------|
 | app-fqdn | Application FQDN. |
+| loadbalancers | Elastic load balancers in use by this environment. |
 | role-name | IAM role name. |
 
 Example Usage
@@ -76,6 +83,29 @@ Including an example of how to use this module:
       vpc_elb_subnets    = ["public-sub-az1", "public-sub-az2"]
       vpc_id             = "vpc-1234"
     }
+
+## Changelog:
+
+* tags 3.X.X:
+
+```
+1.X and 2.X merged together.
+Switched the way LB configuration is handled.
+Added more options to control configuration.
+Started to use 'real' semnatic versioning.
+```
+
+* tags 2.X:
+
+```
+Initial release with HTTPS support.
+```
+
+* tags 1.X:
+
+```
+Initial release without HTTPS support.
+```
 
 License
 -------

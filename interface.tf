@@ -59,7 +59,7 @@ variable "rolling_update_enabled" {
 }
 
 variable "rolling_update_type" {
-  default     = "Time"
+  default     = "Health"
   description = "Rolling update type."
 }
 
@@ -84,7 +84,8 @@ variable "elb_connection_draining_timeout" {
 }
 
 variable "elb_ssl_cert" {
-  description = "ARN of ceriticate."
+  default     = ""
+  description = "ARN of certificate to use."
 }
 
 variable "ec2_key_name" {
@@ -200,6 +201,34 @@ variable "asg_trigger_upper_threshold" {
   description = "If the measurement is higher than this number for the breach duration, a trigger is fired."
 }
 
+variable "batch_size_type" {
+  default     = "Percentage"
+  description = "The type of number that is specified in BatchSize."
+}
+
+variable "batch_size" {
+  default     = "100"
+  description = "Percentage or fixed number of Amazon EC2 instances in the Auto Scaling group on which to simultaneously perform deployments."
+}
+
+variable "loadbalancer_type" {
+  default     = "classic"
+  description = "Loadbalancer type."
+}
+
+variable "env_default_key" {
+  default = "DEFAULT_ENV_%d"
+}
+
+variable "env_default_value" {
+  default = "UNSET"
+}
+
+variable "env_vars" {
+  default = {}
+  type    = "map"
+}
+
 output "role-name" {
   description = "IAM role name."
   value       = "${aws_iam_role.app.name}"
@@ -208,4 +237,9 @@ output "role-name" {
 output "app-fqdn" {
   value       = "${lower(aws_elastic_beanstalk_environment.app.cname)}"
   description = "Application FQDN."
+}
+
+output "loadbalancers" {
+  value       = "${aws_elastic_beanstalk_environment.app.load_balancers}"
+  description = "Elastic load balancers in use by this environment."
 }
