@@ -229,6 +229,11 @@ variable "env_vars" {
   type    = "map"
 }
 
+output "full-environment-name" {
+  description = ""
+  value       = "${aws_elastic_beanstalk_environment.app.name}"
+}
+
 output "role-name" {
   description = "IAM role name."
   value       = "${aws_iam_role.app.name}"
