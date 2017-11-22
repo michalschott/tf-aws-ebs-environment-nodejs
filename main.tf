@@ -372,7 +372,6 @@ resource "aws_elastic_beanstalk_environment" "app" {
   setting {
     namespace = "aws:elasticbeanstalk:environment"
     name      = "LoadBalancerType"
-    value     = "classic"
     value     = "${var.loadbalancer_type}"
   }
 
